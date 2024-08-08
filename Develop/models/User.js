@@ -1,11 +1,9 @@
 // models/User.js
-
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/config');
 const bcrypt = require('bcrypt');
+const sequelize = require('../config/database');
 
 class User extends Model {
-  // Method to check password validity
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
@@ -17,17 +15,17 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     hooks: {
@@ -38,13 +36,13 @@ User.init(
       beforeUpdate: async (updatedUserData) => {
         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;
-      }
+      },
     },
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user'
+    modelName: 'user',
   }
 );
 

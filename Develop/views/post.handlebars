@@ -1,24 +1,24 @@
-<!-- views/post.handlebars -->
+{{> header}}
 
 <main>
-    <h1>{{title}}</h1>
-    <p>By {{user.username}} on {{createdAt}}</p>
-    <p>{{content}}</p>
-    <section>
-        <h2>Comments</h2>
-        {{#each comments}}
-        <div>
-            <p>{{this.comment_text}}</p>
-            <p>By {{this.user.username}} on {{this.createdAt}}</p>
-        </div>
-        {{/each}}
-    </section>
-    {{#if loggedIn}}
-    <form id="comment-form">
+  <article>
+    <h2>{{post.title}}</h2>
+    <p>{{post.content}}</p>
+    <p>Posted by {{post.user.username}} on {{post.createdAt}}</p>
+  </article>
+  <section>
+    <h3>Comments</h3>
+    {{#each comments}}
+      <div>
+        <p>{{this.comment_text}}</p>
+        <p>Commented by {{this.user.username}} on {{this.createdAt}}</p>
+      </div>
+    {{/each}}
+    {{#if logged_in}}
+      <form id="new-comment-form">
         <textarea id="comment-text" placeholder="Add a comment"></textarea>
         <button type="submit">Submit</button>
-    </form>
-    {{else}}
-    <p>Please <a href="/login">login</a> to add a comment.</p>
+      </form>
     {{/if}}
+  </section>
 </main>
