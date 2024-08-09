@@ -1,6 +1,5 @@
-// seeds/seed.js
 const sequelize = require('../config/database');
-const { User, Post, Comment } = require('../models');
+const { User, Post, Comment, Tag, PostTag } = require('../models');
 
 const userData = [
   {
@@ -39,6 +38,26 @@ const commentData = [
   }
 ];
 
+const tagData = [
+  {
+    tag_name: 'Tech'
+  },
+  {
+    tag_name: 'Life'
+  }
+];
+
+const postTagData = [
+  {
+    post_id: 1,
+    tag_id: 1
+  },
+  {
+    post_id: 2,
+    tag_id: 2
+  }
+];
+
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
@@ -50,6 +69,10 @@ const seedDatabase = async () => {
   await Post.bulkCreate(postData);
 
   await Comment.bulkCreate(commentData);
+
+  await Tag.bulkCreate(tagData);
+
+  await PostTag.bulkCreate(postTagData);
 
   process.exit(0);
 };

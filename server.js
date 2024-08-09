@@ -1,4 +1,3 @@
-// server.js
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -6,7 +5,7 @@ const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sequelize = require('./config/database');
-const { User, Post, Comment } = require('./models');
+const { User, Post, Comment, Tag, PostTag } = require('./models'); // Import Tag and PostTag models
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -37,6 +36,7 @@ app.use('/api/users', require('./controllers/api/userRoutes'));
 app.use('/api/posts', require('./controllers/api/postRoutes'));
 app.use('/api/comments', require('./controllers/api/commentRoutes'));
 
+// Ensure Tag and PostTag models are synchronized with the database
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
 });

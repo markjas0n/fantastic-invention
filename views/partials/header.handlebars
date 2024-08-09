@@ -4,7 +4,7 @@
       <li><a href="/">Home</a></li>
       {{#if logged_in}}
         <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a id="logout" href="#">Logout</a></li>
       {{else}}
         <li><a href="/login">Login</a></li>
         <li><a href="/signup">Sign Up</a></li>
@@ -12,3 +12,4 @@
     </ul>
   </nav>
 </header>
+<script src="/js/logout.js"></script>
