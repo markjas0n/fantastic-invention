@@ -11,10 +11,12 @@
         <button data-id="{{this.id}}" class="delete-post">Delete</button>
       </article>
     {{/each}}
-    <form id="new-post-form" method="POST" action="/api/posts">
+    <form id="new-post-form">
       <input type="text" id="post-title" name="title" placeholder="Title" required>
       <textarea id="post-content" name="content" placeholder="Content" required></textarea>
       <button type="submit">Create Post</button>
     </form>
   </section>
 </main>
+
+<script src="/js/dashboard.js"></script>
