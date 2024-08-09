@@ -8,7 +8,7 @@ const sequelize = require('./config/database');
 const { User, Post, Comment, Tag, PostTag } = require('./models'); // Import Tag and PostTag models
 
 const app = express();
-const PORT = process.env.PORT || 5432;
+const PORT = process.env.PORT || 3001;
 
 const sess = {
   secret: 'Super secret secret',
